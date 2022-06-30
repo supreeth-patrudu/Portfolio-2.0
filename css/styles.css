@@ -1,0 +1,371 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap');
+
+/*font-family: 'Poppins', sans-serif*/
+/*INITIALLY WE CODED/STYLED it to suit "MOBILE" devices , at the end we will convert to "DESKTOP" mode*/
+/*initially: PUT DISPLAY:NONE to HERO DESIGN and SOCIAL ICON CONTAINER ad they are not needed for mobile devices*/
+
+body {
+  height: 100vh;
+  margin: 0;
+  font-family: 'Poppins', sans-serif ;
+}
+
+/*making few global styles*/
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  width: 100%;
+}
+
+section {
+  padding: 4em 2em;
+  text-align: center; /*we add this cuz we want all elements to be centered on mobile*/
+}
+
+/************ Nav Section *************/
+
+.nav-container {
+  background-color: #6700EE;
+}
+
+.nav-container a {
+  color: #fff;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  padding: 2em; /*gives whitespace*/
+}
+
+header .logo {
+  color: #00F7FF;
+  font-weight: 700;
+}
+
+
+header nav ul {
+  display: flex;
+}
+
+header nav a {
+  display: block; /*dunno why we use this ; allows padding itseems*/
+  padding: 0 1em; /*IMP: if 0 2em then 'hire me' wont be visible + we have to scroll right i.e:container becomes bigger than given size hence right scrollbar appears*/
+
+}
+
+.social-header a{
+  color: #000;
+}
+
+.social-header,.hero-design {
+  display: none;
+}
+
+/************ Hero Section *************/
+
+/*margin decreases element container whereas padding inc*/
+.hero {
+  background-color: #6E00FF;
+  color: #fff;
+  /* display: flex;
+  flex-wrap: nowrap; */
+  display: grid;
+  text-align: center;
+  padding: 4em; /*this made container size increase thereby covering the white gap(if u remove this statement you will see some white gap between navbar and hero section)*/
+}
+
+.meet {
+  display: flex;
+  margin: 0 auto;
+  width: 100px; /*ERROR here...DOUBT*/
+  font-weight: bold;
+  color: #FF64CB;
+}
+
+.meet span {
+  margin-top: 1em;
+  margin-right: 0.5em;
+}
+
+.scroll {
+  width: 30px;
+  margin-top: 2em;
+}
+
+/************ Featured Proj Section *************/
+
+.featured {
+  position: relative; /*cuz child is absolute*/
+  /*if we want the circle to at featured section(note:if we don't mention position 'relative' it will go to top of screen), it needs to be RELATIVE to the featured class...thereby position relative to class 'feature*/
+}
+
+/*image*/
+.featured .right {
+  border: 1px solid rgba(214, 205, 205);
+  border-radius: 5px;
+}
+
+.featured::before {
+  content: "";
+  position: absolute; /*thus parent should be relative*/
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: #E5D5FA;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.subtitle {
+  text-transform: uppercase;
+  font-weight: bold;
+  color: #6E00FF;
+  letter-spacing: 0.2em;
+  font-size: 0.85em;
+  /* margin-bottom: 0.4em; || or instead of (margin top:-0.4em + display:block) we can use margin-bottom here */
+}
+
+.featured-title {
+  color: #000;
+  font-weight: bold;
+  font-size: 1.3em;
+  margin-top: -0.4em;
+  display: block; /*this makes the above margin work */
+}
+
+.featured-desc {
+  color: #252525;
+  font-size: 0.9em;
+  line-height: 1.8em;
+  font-weight: 500;
+  margin-bottom: 3em; /*if u use padding it will give " padding size + margin size " hence don't use it here*/
+}
+
+/************ Skills Section *************/
+
+.skills {
+  background-color: #FFDDF4;/*#FF64CB; */
+}
+
+.skills-container ul li {
+  background-color: #fff;
+  padding: 2em;
+  border-radius: 1em;
+  margin-bottom: 1em;/*to seperate space between cards*/ /*margin-bottom: 3.5em;*/
+}
+
+.skills-container .icon-container {
+  height: 100px;
+  display: flex;
+  margin: 0 auto; /*not necessary just incase*/
+}
+
+/* to make icons on top of card
+.icon-container img {
+  position: relative;
+  bottom: 5.125rem;
+} */
+
+.skills .subtitle2 {
+  text-transform: uppercase;
+  font-weight: bold;
+  color: #ffffff;
+  letter-spacing: 0.2em;
+  font-size: 0.95em;
+  
+}
+
+.skill-title {
+  font-weight: bold;
+}
+
+.featured-desc {
+  margin-bottom: 2em;
+}
+
+/************ Last Section *************/
+
+.portfolio {
+  border: #F7F7F7;
+}
+
+.portfolio-container a img {
+  border-radius: 1em;
+  margin-bottom: 2em;
+}
+
+/* ------  MEDIA QUERIES ------*/
+
+/*we initialy put display none for hero design and scial icons container as they would not be suitable , hence now we will add them in media queries (above 1050px dimension)*/
+
+/*lets modify css for dimensions greater than 800*/
+@media only screen and (min-width: 800px) {
+  /*edit:feature and last section(portfolio)*/
+  .featured,.portfolio {
+    text-align: left;
+  }
+
+  /*portfolio-container  - it is content+image in last section (hence 3 containers)*/
+  .featured, .portfolio-container {
+    display: grid;
+    grid-template-columns: 40% auto;
+  }
+
+  /*left - means text part on featured section*/
+  .left, .portfolio-left {
+    /*below 2 lines make text at the center(middle) of their respective section
+    NOTE:place-content works ONLY with grid*/
+    display: grid;
+    place-content: center;
+  }
+
+  /*right - means image part on featured section*/
+  .right {
+    margin-left: 1em;
+    margin-top: 1em;
+  }
+
+  /*movies skills container up*/
+  .skills {
+    margin-top: -5em; 
+  }
+ 
+  /*applying grid to skill cards note that each element is in 'ul'*/
+  .skills-container ul {
+    display: grid;
+    grid-template-columns: repeat(3,auto);
+    /* grid-template-columns: auto auto auto; */
+    grid-gap:1em;
+  }
+
+  .portfolio-container img {
+    margin-left: 2em;
+  }
+}
+
+
+/*lets modify css for dimensions greater than 1050*/
+@media only screen and (min-width: 1050px) 
+{
+  .hero {
+    height: 90vh;
+  }
+
+  .nav-container {
+    display: grid;
+    grid-template-columns: 66% auto; /*divides 'header' and 'social-header'*/
+    background-color:unset; /*basically it resets*/
+  }
+
+  /*nav-container padding*/
+  .nav-container header {
+    background-color: #6700EE;
+    padding: 2em 2em 2em 4em; /*trbl*/
+  }
+
+  /*social-icon padding*/
+  .social-header {
+    padding: 2em 4em 2em 0;
+    display: block;
+  }
+
+  .social-header  ul {
+    display: grid;
+    grid-template-columns: repeat(3,4em);
+    float: right;
+  }
+
+  /*social-icon size*/
+  .social-header  i {
+    font-size: 1.3em;
+  }
+
+  .hero {
+    display: grid;
+    grid-template-columns: 66% auto;
+    background-color: unset; /*basically it resets*/
+    padding: 0; /*this removes whitespace in hero section*/
+  }
+
+  /*content - hero section textual part*/
+  .hero .content {
+    background-color: #6E00FF;
+    padding: 6em 8em 6em 4em;
+    text-align: left;
+  }
+
+  .hero .content h1 {
+    font-size: 3em;
+    line-height: 1.2em;
+  }
+
+  .meet {
+    margin: unset; /*basically it resets*/
+  }
+
+  .hero-design {
+    display: unset; /*basically it resets display ; can also use dispay: block*/
+    margin-left: -50%;
+    margin-top: 15%;
+    width: 100%;
+  }
+
+  .portfolio img {
+    float: right;
+    max-width: 500px;
+  }
+}
+
+
+/*lets modify css for dimensions greater than 1250*/
+@media only screen and (min-width: 1250px) 
+{
+  .header {
+    padding: 2em 2em 2em 10em;
+  }
+
+  .social-header {
+    padding: 2em 10em 2em 0;
+  }
+
+  section {
+    padding: 10em 10em 4em 10em;
+  }
+  .hero .content {
+    padding: 6em 8em 6em 10em;
+  }
+}
+
+
+/*lets modify css for dimensions greater than 1550*/
+@media only screen and (min-width: 1550px) 
+{
+  .header {
+    padding: 2em 2em 2em 20em;
+  }
+
+  .social-header {
+    padding: 2em 15em 2em 0;
+  }
+
+  section {
+    padding: 10em 15em 4em 15em;
+  }
+  .hero .content {
+    padding: 9em 15em 6em 15em;
+  }
+}
+
+
+
+
